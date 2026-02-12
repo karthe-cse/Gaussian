@@ -17,13 +17,37 @@ To write a program to find the solution of a matrix using Gaussian Elimination.
 ```
 /*
 Program to find the solution of a matrix using Gaussian Elimination.
-Developed by: 
-RegisterNumber: 
+Developed by: KARTHEESHWAR D J
+RegisterNumber:25017571 
 */
+import numpy as np
+import sys
+n=int(input())
+a=np.zeros((n,n+1))
+x=np.zeros(n)
+for i in range(n):
+    for j in range(n+1):
+        a[i][j]=float(input())
+for i in range(n):
+    if a[i][j]==0:
+        sys.exit('Divide by zero detected!')
+    for j in range(i+1,n):
+        ratio=a[j][i]/a[i][i]
+        for k in range(n+1):
+            a[j][k]=a[j][k]-ratio*a[i][k]
+x[n-1]=a[n-1][n]/a[n-1][n-1]
+for i in range(n-2,-1,-1):
+    x[i]=a[i][n]
+    for j in range(i+1,n):
+        x[i]=x[i]-a[i][j]*x[j]
+    x[i]=x[i]/a[i][i]
+for i in range(n):
+    print('X%d = %0.2f'%(i,x[i]),end=' ')
 ```
 
 ## Output:
 ![gaussian elimination]()
+<img width="1228" height="410" alt="Screenshot 2026-02-12 143734" src="https://github.com/user-attachments/assets/48165f2d-67fc-4175-81c7-c836ea38d7b6" />
 
 
 ## Result:
